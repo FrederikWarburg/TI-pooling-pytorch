@@ -42,8 +42,8 @@ def evaluate_model(model, test_data_loader, number_of_test_chunks, TEST_CHUNK_SI
 
 
 
-TRAIN_FILENAME = '../mnist_all_rotation_normalized_float_train_valid.amat'
-TEST_FILENAME = '../mnist_all_rotation_normalized_float_test.amat'
+TRAIN_FILENAME = 'mnist_all_rotation_normalized_float_train_valid.amat'
+TEST_FILENAME = 'mnist_all_rotation_normalized_float_test.amat'
 
 LOADED_SIZE = 28
 DESIRED_SIZE = 32
@@ -61,6 +61,7 @@ np.random.seed(100)
 torch.manual_seed(100)
 # results path
 result_folder = 'results/'
+if not os.path.isdir(result_folder): os.mkdir(result_folder)
 filename = 'results'
 
 train_data_loader = tools.DataLoader(TRAIN_FILENAME,
