@@ -21,6 +21,7 @@ def evaluate_model(model, test_data_loader, number_of_test_chunks, TEST_CHUNK_SI
     with torch.no_grad():
         for chunk_index in range(number_of_test_chunks):
             chunk_x, chunk_y = test_data_loader.next_batch(TEST_CHUNK_SIZE)
+            chunk_x = np.transpose(chunk_x, (0, 3, 1, 2, 4))
             _, target = np.where(chunk_y == 1)
 
             chunk_x = torch.tensor(chunk_x, dtype=torch.float32).to(device)
@@ -99,7 +100,7 @@ test_stats = pd.DataFrame(columns=['epoch', 'loss', 'acc'])
 
 while True:
     batch_x, batch_y = train_data_loader.next_batch(BATCH_SIZE)
-
+    batch_x = np.transpose(batch_x, (0, 3, 1, 2, 4))
     _, target = np.where(batch_y == 1)
 
     batch_x = torch.tensor(batch_x, dtype=torch.float32).to(device)

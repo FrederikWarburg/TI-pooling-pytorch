@@ -16,13 +16,13 @@ class Model(nn.Module):
         self.linear_output = self.fully_connected_multiplier * self.number_of_filters
 
         self.branch_cnn = nn.Sequential(
-            nn.Conv2d(3,self.number_of_filters,3,1,1),
+            nn.Conv2d(1, self.number_of_filters, 3, 1, 1),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2,stride=2),
+            nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Conv2d(self.number_of_filters, 2 * self.number_of_filters, 3, 1, 1),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2,stride=2),
-            nn.Conv2d(2 * self.number_of_filters,4 * self.number_of_filters, 3, 1, 1),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(2 * self.number_of_filters, 4 * self.number_of_filters, 3, 1, 1),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
             )
